@@ -12,10 +12,13 @@ public partial class player : CharacterBody2D
 	private bool hasDoubleJumped = false;
 	private Vector2 direction;
 	private Vector2 _startingPosition;
-
+	
+	
 	public override void _Ready()
 	{
 		_startingPosition = GlobalPosition;
+		GetNode<AudioStreamPlayer>("JumpSound").Stream = GD.Load<AudioStream>("res://assets/audio/boing.mp3");
+
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -34,11 +37,13 @@ public partial class player : CharacterBody2D
 			if (IsOnFloor())
 			{
 				velocity.Y = jumpVelocity;
+				GetNode<AudioStreamPlayer>("JumpSound").Play();
 			}
 			else if (!hasDoubleJumped)
 			{
 				velocity.Y = doubleJumpVelocity;
 				hasDoubleJumped = true;
+				GetNode<AudioStreamPlayer>("JumpSound").Play();
 			}
 		}
 
