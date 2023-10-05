@@ -1,5 +1,6 @@
+using System.Collections;
+using System.Runtime.CompilerServices;
 using Godot;
-using System;
 
 public partial class player : CharacterBody2D
 {
@@ -12,6 +13,12 @@ public partial class player : CharacterBody2D
 	private float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	private bool hasDoubleJumped = false;
 	private Vector2 direction;
+	private Vector2 _startingPosition;
+
+	public override void _Ready()
+	{
+		_startingPosition = GlobalPosition;
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -70,4 +77,11 @@ public partial class player : CharacterBody2D
 		if (direction.X < 0)
 			GetNode<AnimatedSprite2D>("AnimatedSprite2D").FlipH = false;
 	}
+	private void _on_hazard_detector_area_entered(Area2D area)
+	{
+		GlobalPosition = _startingPosition;
+	}
 }
+
+
+

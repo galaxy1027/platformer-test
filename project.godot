@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [display]
 
 window/stretch/mode="viewport"
-window/stretch/scale=4.0
+window/stretch/scale=3.0
 
 [dotnet]
 
@@ -52,6 +52,12 @@ jump={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Hazards"
+
 [physics]
 
 2d/default_gravity=490.0
@@ -59,3 +65,4 @@ jump={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.403922, 0.713726, 1, 1)
